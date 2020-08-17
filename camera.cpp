@@ -56,7 +56,7 @@ bool RGBD_Camera::openCamera()
     //                            Configure some properties (resolution)
     //========================================================================================
     rc = device.setImageRegistrationMode(openni::IMAGE_REGISTRATION_DEPTH_TO_COLOR);
-    device.setDepthColorSyncEnabled(true);
+    //device.setDepthColorSyncEnabled(true);
 
 
     options = rgb.getVideoMode();

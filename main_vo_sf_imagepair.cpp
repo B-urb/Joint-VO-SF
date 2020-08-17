@@ -39,7 +39,7 @@ int main()
 	VO_SF cf(res_factor);
 
 	//Set image dir
-	std::string dir = ".../data/opening door/";
+	std::string dir = "../data/opening door/";
 
 	//Load images and create both pyramids
 	cf.loadImagePairFromFiles(dir, res_factor);

@@ -45,7 +45,7 @@ int main()
 
 
 	//Set dir of the Rawlog file
-	dataset.filename = ".../rawlog_rgbd_dataset_freiburg1_desk/rgbd_dataset_freiburg1_desk.rawlog";
+        dataset.filename = "./rawlog_rgbd_dataset_freiburg2_desk_with_person/rgbd_dataset_freiburg2_desk_with_person.rawlog";
 
 	//Create the 3D Scene
 	cf.initializeSceneDatasets();
