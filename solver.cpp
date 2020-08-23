@@ -695,7 +695,7 @@ void VO_SF::solveMotionDynamicClusters()
         solveMotionForIndices(indices, twist, ws_foreground, false);
 
         //Save the solution
-		computeTransformationFromTwist(twist, false, l);
+      computeTransformationFromTwist(twist, false, l);
     }
 }
 

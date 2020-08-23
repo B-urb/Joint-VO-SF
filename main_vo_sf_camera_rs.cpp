@@ -22,7 +22,7 @@
 *********************************************************************************/
 
 #include <joint_vo_sf.h>
-#include <camera.h>
+#include <camera_rs.h>
 
 
 // -------------------------------------------------------------------------------
@@ -41,20 +41,21 @@ int main()
 	VO_SF cf(res_factor);
 	RGBD_Camera camera(res_factor);
 
+
 	//Create the 3D Scene
 	cf.initializeSceneCamera();
 
 	//Initialize camera and method
     camera.openCamera();
     camera.disableAutoExposureAndWhiteBalance();
-	camera.loadFrame(cf.depth_wf, cf.intensity_wf);
+    camera.loadFrame(cf.depth_wf, cf.intensity_wf);
     cf.createImagePyramid();
 	camera.loadFrame(cf.depth_wf, cf.intensity_wf);
     cf.createImagePyramid();
 	cf.initializeKMeans();
 
 	//Auxiliary variables for the interface
-	int pushed_key = 0;
+	char pushed_key = 0;
 	bool anything_new = false, stop = false;
     bool clean_sf = false, continuous_exec = false;
 
@@ -62,15 +63,17 @@ int main()
 	while (!stop)
 	{	
 
-        if (cf.window.keyHit())
+        if (cf.window.keyHit()) {
             pushed_key = cf.window.getPushedKey();
-        else
-            pushed_key = 0;
+          }
+        else {
+          pushed_key = 0;
+        }
 
-		switch (pushed_key) {
+        switch (pushed_key) {
 			
         //Capture a new frame
-		case  'n':
+		case  'N':
 			cf.use_b_temp_reg = false; //I turn it off here for individual framepair tests
             camera.loadFrame(cf.depth_wf, cf.intensity_wf);
 			cf.createImagePyramid();
@@ -82,7 +85,7 @@ int main()
 			break;
 
         //Compute the solution
-        case 'a':
+        case 'A':
             cf.run_VO_SF(false);
             cf.createImagesOfSegmentations();
 
@@ -90,18 +93,18 @@ int main()
             break;
 
         //Turn on/off continuous estimation
-        case 's':
+        case 'S':
             continuous_exec = !continuous_exec;
             break;
 
 		//Reset the camera pose
-		case 'r':
+		case 'R':
 			cf.cam_pose.setFromValues(0,0,1.5,0,0,0);
 			anything_new = true;
 			break;
 			
 		//Close the program
-		case 'e':
+		case 'E':
 			stop = true;
 			break;
 		}
